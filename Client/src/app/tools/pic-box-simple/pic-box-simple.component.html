@@ -1,0 +1,46 @@
+<div>
+  <div class="thumbnail">
+
+    <img *ngIf="product.fileName" src="{{BASE_ADDRESS}}/{{product.fileName}}" style="width:100%" />
+    <img *ngIf="!product.fileName" src="../../../assets/images/util/NotFound.jpg" style="width:100%" />
+    <h5 *ngIf="product.discount >0" class="discount-oval">%{{product.discount}} تخفیف</h5>
+    <div class="caption">
+      <div>
+        <span>
+          <h4>{{ product.name }}</h4>
+        </span>
+        <hr>
+        <span class="float-left">
+          <h5>
+            <span>{{ product.price | number }}</span>
+            <ng-template>{{ product.price | number }}</ng-template>
+            ريال
+          </h5>
+        </span>
+
+      </div>
+      <div class="clearfix"></div>
+      <div *ngIf="showAddToCard && quantity == 0; else modifyQuantity" class="footer">
+        <button [disabled]="!enableAddToCard" class="btn btn-primary btn-block btn-add-to-card fa fa-lg fa-plus"
+          (click)="ModifyQuantity('a')">
+        </button>
+
+      </div>
+      <ng-template #modifyQuantity>
+        <div class="row no-gutters">
+          <div class="col-2">
+            <button (click)="ModifyQuantity('s')" class="btn btn-secondary btn-add-to-card btn-block">
+              -
+            </button>
+          </div>
+          <div class="col text-center">{{ quantity }} تعداد</div>
+          <div class="col-2">
+            <button (click)="ModifyQuantity('a')" class="btn btn-secondary btn-add-to-card btn-block">
+              +
+            </button>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

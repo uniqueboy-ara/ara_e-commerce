@@ -1,0 +1,13 @@
+.btn{
+    margin-bottom: 20px;
+}
+
+.oi{
+    right: 6px;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}

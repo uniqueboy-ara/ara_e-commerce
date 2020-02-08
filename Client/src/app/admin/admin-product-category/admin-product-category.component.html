@@ -1,0 +1,29 @@
+<button routerLink="new" class="btn btn-outline-success">
+  <span class="oi oi-plus"></span>&nbsp; افزودن گروه جدید
+</button>
+
+<table class="table table-hover text-center">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">عنوان</th>
+      <th scope="col">تصویر</th>
+      <th scope="col">توضیحات</th>
+      <th scope="col">نمایش داده شود؟</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let cat of items; let i = index">
+      <th scope="row">{{ i + 1 }}</th>
+      <td>{{ cat.name }}</td>
+      <td>
+        <img *ngIf="cat.fileName; else notFoundBlock" style="width: 40%" src="{{BASE_ADDRESS}}/{{cat.fileName}}" />
+        <ng-template #notFoundBlock>
+          <img style="width: 40%" src="../../../assets/images/util/NotFound.jpg" />
+        </ng-template>
+      </td>
+      <td>{{ cat.description }}</td>
+      <td><input type="checkbox" [checked]="cat.isVisible" /></td>
+    </tr>
+  </tbody>
+</table>

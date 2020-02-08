@@ -1,0 +1,49 @@
+<div class="btn btn-success" (click)="OnBack()">
+  <span class="oi oi-arrow-circle-right"></span>
+</div>
+<hr />
+<h3 class="alert alert-success">اضافه کردن گروه جدید</h3>
+<div class="row">
+  <div class="col-md-6 col-xs-6">
+    <form #f="ngForm" (ngSubmit)="Save(category)">
+      <div class="form-group">
+        <label for="name">نام </label>
+        <input #name="ngModel" [(ngModel)]="category.name" name="name" id="name" type="text" class="form-control"
+          required>
+        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">Name is required</div>
+      </div>
+      <div class="form-group">
+        <label for="description">توضیحات </label>
+        <input #description="ngModel" [(ngModel)]="category.description" name="description" id="description" type="text"
+          class="form-control" required>
+        <div class="alert alert-danger" *ngIf="description.touched && description.invalid">Description is required</div>
+      </div>
+      <div class="form-group">
+        <label for="url">تصویر </label>
+        <upload [autoUpload]="true" directory='cat' (onFileUploaded)="SetFilePath($event)"></upload>
+      </div>
+      <div class="form-group">
+        <label class="custom-control custom-checkbox badge badge-pill p-2" [class.badge-info]='category.isVisible'>
+          <input type="checkbox" class="custom-control-input" #isVisible="ngModel" [(ngModel)]="category.isVisible"
+            name="isVisible">
+          <span class="custom-control-indicator"></span>
+          <span class="custom-control-description">نمایش داده
+            شود؟</span>
+        </label>
+      </div>
+      <button class="btn btn-primary" type="submit">ذخیره</button>
+    </form>
+  </div>
+  <div class="col-md-6 col-xs-6">
+    <div class="card" style="width: 20rem;">
+      <img *ngIf="category.fileName;else notFound" class="card-img-top" src="{{BASE_ADDRESS}}/{{category.fileName}}">
+      <ng-template #notFound>
+        <img class="card-img-top" src="../../../assets/images/util/NotFound.jpg">
+      </ng-template>
+      <div class="card-body">
+        <h4 class="card-title">{{category.name}}</h4>
+        <p class="card-text">{{category.description}}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" routerLink="/">Online Shop</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#containerNavbarCenter"
+    aria-controls="containerNavbarCenter" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="col-4" *ngIf="itemsCount > 0">
+    <strong>
+      <span style="color: white;">سبد خرید&nbsp;</span>
+
+      <span class="badge badge-warning badge-pill">{{ itemsCount }}</span>
+    </strong>
+  </div>
+  <div class="collapse navbar-collapse justify-content-md-center" id="containerNavbarCenter">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a *ngIf="auth.isLogedIn() && auth.currentUser.isAdmin" class="nav-link"
+          routerLink="/{{ routes.Admin.Panel }}">Admin</a>
+      </li>
+      <li *ngIf="!auth.isLogedIn()" class="nav-item">
+        <a class="nav-link" routerLink="/{{ routes.Login }}">Login</a>
+      </li>
+      <li *ngIf="auth.isLogedIn()" class="nav-item">
+        <a class="nav-link" (click)="auth.logout()">Logout</a>
+      </li>
+      <li *ngIf="auth.isLogedIn()" class="nav-item">
+        <a class="nav-link" routerLink="/{{ routes.UserProfile }}">
+          <strong>{{ auth.currentUser.name }}</strong>
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>

@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <div class="col-3">
+      <category-filter [category]="selectedCategory"></category-filter>
+    </div>
+    <div class="col">
+      <div class="row">
+        <ng-container *ngFor="let product of allProducts;let i = index">
+          <div class="col-6">
+            <div>
+              <pic-box-simple [input-product]="product" [enable-add-to-card]='product.price!=0'>
+              </pic-box-simple>
+            </div>
+          </div>
+          <div *ngIf="(i+1) % 2 == 0" class="w-100"></div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

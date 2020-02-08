@@ -1,0 +1,37 @@
+<div>
+  <a routerLink="/admin/products/new" class="btn btn-outline-success">
+    <span class="oi oi-plus"></span>&nbsp; افزودن محصول جدید</a
+  >
+</div>
+<div class="btn-group text-center" dir="ltr">
+  <a
+    *ngFor="let category of categories"
+    class="btn btn-secondary "
+    name="category.name"
+    routerLink="/admin/products"
+    [queryParams]="{ category: category.name }"
+    [class.active]="selectedCategory == category.name"
+    id="category.name"
+    >{{ category.name }}</a
+  >
+  <a
+    class="btn btn-secondary"
+    name="All"
+    routerLink="/admin/products"
+    [class.active]="!selectedCategory"
+    id="All"
+    >همه</a
+  >
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-4" *ngFor="let product of filteredList">
+      <pic-box
+        [input-product]="product"
+        [edit-link]="['/admin/products', product._id]"
+        (onDelete)="Deleteproduct(product._id)"
+      >
+      </pic-box>
+    </div>
+  </div>
+</div>

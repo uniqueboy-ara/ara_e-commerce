@@ -1,0 +1,17 @@
+<div>
+  <div class="thumbnail">
+    <img *ngIf="product.fileName" src="{{BASE_ADDRESS}}/{{product.fileName}}" style="width:100%" />
+    <img *ngIf="!product.fileName" src="../../../assets/images/util/NotFound.jpg" style="width:100%" />
+    <div class="caption">
+      <div></div>
+      <span class="card-title col-9">
+        <strong>{{ product.name }}</strong>
+      </span>
+      <button [routerLink]="groupName" [queryParams]="{ category: product.name }"
+        class="btn btn-outline-secondary btn-sm float-left">
+        بیشتر...
+      </button>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>

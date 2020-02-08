@@ -1,0 +1,70 @@
+img {
+    margin-bottom: 5px;
+  }
+  
+  .thumbnail {
+    background-color: rgb(247, 247, 247);
+    border: 1px solid rgb(231, 231, 231);
+    border-radius: 3px;
+    padding: 3px;
+    margin-bottom: 10px;
+  }
+  
+  .btn {
+    cursor: pointer;
+  }
+  
+  .card-title {
+    text-align: center;
+  }
+  
+  .footer{
+    margin-top: 5px;
+    padding: 0;
+  }
+  .discount-oval{
+        background-color: #fb3449;
+    font-weight: 700;
+    color: #fff;
+    border-radius: 20px;
+    padding: 4px 6px 1px;
+    letter-spacing: 0;
+    margin-bottom: 3px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 16px;
+    font-size: 1.143rem;
+    line-height: 1.375;
+    margin-right: 8px;
+    min-width: 43px;
+    height: 23px;
+    float:left
+  }
+
+  .btn-add-to-card{
+        font-size: 18px;
+    font-size: 1.286rem;
+    line-height: 1.222;
+    
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 4px;
+    background-color: #00bfd6;
+    color: #fff;
+    background-color: #ef394e;
+    border: none;
+  }

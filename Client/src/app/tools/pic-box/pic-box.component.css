@@ -1,0 +1,19 @@
+img {
+  margin-bottom: 5px;
+}
+
+.thumbnail {
+  background-color: rgb(247, 247, 247);
+  border: 1px solid rgb(231, 231, 231);
+  border-radius: 3px;
+  padding: 3px;
+  margin-bottom: 10px;
+}
+
+.btn {
+  cursor: pointer;
+}
+
+.card-title {
+  text-align: center;
+}

@@ -1,0 +1,54 @@
+<div>
+  <div class="thumbnail">
+    <img *ngIf="product.fileName" src="{{BASE_ADDRESS}}/{{product.fileName}}" style="width:100%" />
+    <img *ngIf="!product.fileName" src="../../../assets/images/util/NotFound.jpg" style="width:100%" />
+    <div class="caption">
+      <div class=" clearfix">
+        <span *ngIf="product.price > 0; else freePrice" class="float-left">
+          <strong>قیمت: {{ product.price | number }}ريال</strong>
+        </span>
+        <ng-template #freePrice>
+          <span class="float-right">
+            <strong>قیمت: مجانی</strong>
+          </span>
+        </ng-template>
+        <span>
+          <strong>{{ product.name }}</strong>
+        </span>
+      </div>
+      <button class="btn btn-outline-success btn-sm float-left" [routerLink]="editLink">
+        Edit
+      </button>
+      <button type="button" class="btn btn-outline-danger btn-sm float-right" data-toggle="modal"
+        data-target="#exampleModal">
+        Delete
+      </button>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Delete Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure? 😱
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">
+          No
+        </button>
+        <button type="button" class="btn btn-outline-primary" (click)="Delete()" data-dismiss="modal">
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

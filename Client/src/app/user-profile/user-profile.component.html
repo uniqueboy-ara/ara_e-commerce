@@ -1,0 +1,25 @@
+<div class="col-md-4 col-xs-4 container">
+  <div class="alert">
+    <span>Name:
+      <strong>{{auth.currentUser.name}} {{auth.currentUser.family}}</strong>
+    </span>
+  </div>
+  <div class="alert">
+    <span>Email:
+      <strong>{{auth.currentUser.email}}</strong>
+    </span>
+  </div>
+  <div class="alert">
+    <span>City:
+      <strong>{{auth.currentUser.city}}</strong>
+    </span>
+  </div>
+  <div class="alert alert-success">
+    <span>Is Admin:
+      <strong>{{auth.currentUser.isAdmin ? 'YES': 'NO' }}</strong>
+    </span>
+  </div>
+  <div class="btn btn-primary col-md-12 col-xs-12" (click)="auth.logout()">
+    <span>Logout!</span>
+  </div>
+</div>

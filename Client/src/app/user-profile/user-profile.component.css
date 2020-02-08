@@ -1,0 +1,11 @@
+.container{
+    margin-top: 30px;
+    text-align: center;
+}
+
+.alert{
+    background-color: rgb(240, 240, 240);
+    border-color: rgb(199, 199, 199);
+    color: black;
+    margin-bottom: 5px;
+}

@@ -1,0 +1,68 @@
+<div class="btn btn-success" (click)="OnBack()">
+  <span class="oi oi-arrow-circle-right"></span></div>
+
+<hr />
+<h3 class="alert alert-success">اضافه کردن محصول جدید</h3>
+<div class="row">
+  <div class="col-md-6 col-xs-6">
+    <form #f="ngForm" (ngSubmit)="Save(product)">
+      <div class="form-group">
+        <label for="name">نام محصول </label>
+        <input #name="ngModel" [(ngModel)]="product.name" name="name" id="name" type="text" class="form-control"
+          required />
+        <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+          Name is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="price">قیمت </label>
+        <input #price="ngModel" [(ngModel)]="product.price" name="price" id="price" type="number" min="0"
+          class="form-control" required />
+        <div class="alert alert-danger" *ngIf="price.touched && price.invalid">
+          Price is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="caption">توضیحات </label>
+        <input #caption="ngModel" [(ngModel)]="product.caption" name="caption" id="caption" type="text"
+          class="form-control" required />
+        <div class="alert alert-danger" *ngIf="caption.touched && caption.invalid">
+          Caption is required
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="url">تصویر محصول </label>
+        <upload [autoUpload]="true" directory='prod' (onFileUploaded)="SetFilePath($event)"></upload>
+      </div>
+      <div class="form-group">
+        <label for="category">گروه </label>
+        <select #category="ngModel" [(ngModel)]="product.category" name="category" id="category" class="form-control"
+          required>
+          <option *ngFor="let cat of categories" [value]="cat.name">{{
+            cat.name
+          }}</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="category.touched && category.invalid">
+          Category is required
+        </div>
+      </div>
+      <button [disabled]="!f.valid" class="btn btn-primary" type="submit">
+        Save
+      </button>
+    </form>
+  </div>
+  <div class="col-md-6 col-xs-6">
+    <div class="card" style="width: 20rem;">
+      <img *ngIf="product.fileName; else notFound" class="card-img-top" src="{{BASE_ADDRESS}}/{{product.fileName}}" />
+      <button *ngIf="product.fileName" class=" btn btn-warning btn-block" (click)='DeleteImage()'>حذف تصویر</button>
+      <ng-template #notFound>
+        <img class="card-img-top" src="../../../assets/images/util/NotFound.jpg" />
+      </ng-template>
+      <div class="card-body">
+        <h4 class="card-title">{{ product.name }}</h4>
+        <p class="card-text">{{ product.caption }}</p>
+        <a>{{ product.category }}</a>
+      </div>
+    </div>
+  </div>
+</div>
