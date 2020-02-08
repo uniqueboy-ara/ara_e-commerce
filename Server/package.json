@@ -1,0 +1,21 @@
+{
+  "name": "peopleapi",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "morgan": "^1.9.1",
+    "ara-persian-cal": "^1.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "linq": "^3.2.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.4.20",
+    "socket.io": "^2.3.0",
+    "express-fileupload": "^1.1.6"
+  }
+}
