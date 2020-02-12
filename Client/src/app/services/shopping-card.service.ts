@@ -1,24 +1,21 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { ServerRoutes } from "../routesAndUrls";
-import { Observable, BehaviorSubject } from "rxjs";
-import { map } from "rxjs/operators";
-import { ShoppingCard } from "../model/shoppingCard";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+
+import { api_result } from '../model/api-result';
+import { ServerRoutes } from '../routesAndUrls';
+import { events } from '../socket-event-list';
+import { RealtimeService } from './realtime.service';
 
 @Injectable()
 export class ShoppingCardService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private realTimeService: RealtimeService) { }
 
-  private counter = new BehaviorSubject<number>(0);
-  itemsCount = this.counter.asObservable();
-
-  GetItemCount() {
-    let c = 0;
-    this.GetCard().subscribe(card => {
-      if (!card || !card.items) return;
-      card.items.forEach(item => (c += item.quantity));
-      this.counter.next(c);
-    });
+  LoadShoppingBasket() {
+    var cardId = localStorage.getItem("cardId");
+    if (cardId)
+      return this.http.get<api_result>(ServerRoutes.ShoppingCard.GENERAL_ROUTE + "/" + cardId)
+    return Observable.create();
   }
 
   private Create() {
@@ -26,11 +23,8 @@ export class ShoppingCardService {
     return this.http.post(ServerRoutes.ShoppingCard.GENERAL_ROUTE, product);
   }
 
-  GetCard(): Observable<ShoppingCard> {
-    var cardId = localStorage.getItem("cardId");
-    return this.http
-      .get(ServerRoutes.ShoppingCard.GENERAL_ROUTE + "/" + cardId)
-      .pipe(map(r => r["data"]));
+  GetCard() {
+    return this.realTimeService.Listen(events.ITEM_ADDED_TO_SHOPPING_CARD);
   }
 
   private async GetOrCreateCardId() {
@@ -55,6 +49,4 @@ export class ShoppingCardService {
     var cardId = await this.GetOrCreateCardId();
     return this.AddOrUpdateProduct(cardId, product, flag);
   }
-
-  RemoveItemFromCard(product) {}
 }

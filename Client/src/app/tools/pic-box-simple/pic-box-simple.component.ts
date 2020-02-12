@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ShoppingCardService } from '../../services/shopping-card.service';
 import { ServerRoutes } from '../../routesAndUrls';
 
@@ -7,7 +7,16 @@ import { ServerRoutes } from '../../routesAndUrls';
   templateUrl: './pic-box-simple.component.html',
   styleUrls: ['./pic-box-simple.component.css']
 })
-export class PicBoxSimpleComponent {
+export class PicBoxSimpleComponent implements OnInit {
+  ngOnInit(): void {
+    if (this.product) {
+      this.shoppingCardService.GetCard().subscribe(shoppingCard => {
+        if (!shoppingCard) this.quantity = 0;
+        let result = shoppingCard['items'].filter(m => m._id == this.product._id);
+        this.quantity = result[0] ? result[0].quantity : 0;
+      });
+    }
+  }
   quantity = 0;
   @Input('input-product') product;
   @Input('show-add-to-card') showAddToCard = true;
@@ -17,25 +26,18 @@ export class PicBoxSimpleComponent {
 
 
   constructor(private shoppingCardService: ShoppingCardService) {
-    this.getQuantity();
+    //  this.getQuantity();
   }
 
   async ModifyQuantity(flag) {
     (await this.shoppingCardService.ModifyQuantity(this.product, flag)).subscribe(n => {
-      this.getQuantity();
-      this.shoppingCardService.GetItemCount();
+      console.log("TCL: PicBoxSimpleComponent -> ModifyQuantity -> n", n)
+      //  this.getQuantity();
     });
 
-    if (this.quantity == 0) {
-      this.shoppingCardService.RemoveItemFromCard(this.product);
-    }
   }
 
   getQuantity() {
-    this.shoppingCardService.GetCard().subscribe(shippingCard => {
-      if (!shippingCard) this.quantity = 0;
-      let result = shippingCard.items.filter(m => m._id == this.product._id);
-      this.quantity = result[0] ? result[0].quantity : 0;
-    });
+
   }
 }

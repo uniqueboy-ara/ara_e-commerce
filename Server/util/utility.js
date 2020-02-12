@@ -42,16 +42,13 @@ async function userHasPermission(userInfo, ruleName, accessLevel) {
                 return true;
             }
             else {
-                //console.log("doc.accessLevel.title", doc.accessLevel.title);
                 let Rules = doc['accessLevel'].rules.find(function (item) {
                     return item.name == ruleName;
                 });
-                //console.log("Rules",Rules);
                 if (Rules != undefined) {
                     let hasAccessPermission = Rules.value.find(function (item) {
                         return item == accessLevel.toLowerCase();
                     });
-                    // console.log("hasAccessPermission",hasAccessPermission);
                     if (hasAccessPermission != undefined) {
                         return true;
                     }

@@ -1,0 +1,14 @@
+<div class="cards-list">
+
+    <div class="card 1" *ngFor="let product of productList" >
+        <div class="card_image">
+            <img *ngIf="product.fileName" src="{{BASE_ADDRESS}}/{{product.fileName}}" />
+            <img *ngIf="!product.fileName" src="../../../assets/images/util/NotFound.jpg" />
+        </div>
+        <div class="card_title"
+        [routerLink]="groupName" [queryParams]="{ category: product.name }">
+            <p>{{product.name}}</p>
+        </div>
+    </div>
+
+</div>

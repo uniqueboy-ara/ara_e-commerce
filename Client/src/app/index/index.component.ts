@@ -17,8 +17,7 @@ export class IndexComponent implements OnInit {
     private route: ActivatedRoute
   ) {
     this.categoryService.GetAll().subscribe(m => {
-      console.log("TCL: IndexComponent -> m", m);
-      this.category_products = m["data"];
+      this.category_products = m.data;
 
       route.queryParamMap.subscribe(r => {
         this.selectedCategory = r.get("category");

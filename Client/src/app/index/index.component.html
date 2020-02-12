@@ -1,7 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="row">
-      <ng-container *ngFor="let product of category_products; let i = index">
+      <product-list [productList]='category_products' group-name="products"></product-list>
+      <!-- <ng-container *ngFor="let product of category_products; let i = index">
         <div class="col-3">
           <div>
             <pic-box-button [input-product]="product" group-name="products">
@@ -9,7 +10,7 @@
           </div>
         </div>
         <div *ngIf="(i + 1) % 4 == 0" class="w-100"></div>
-      </ng-container>
+      </ng-container> -->
     </div>
   </div>
 </div>
