@@ -24,7 +24,7 @@
     "dropzone": "^5.5.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.4.1",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "open-iconic": "^1.1.1",
     "rxjs": "~6.4.0",
     "socket.io-client": "^2.3.0",
